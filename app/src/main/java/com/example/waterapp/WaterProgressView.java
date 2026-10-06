@@ -12,6 +12,8 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 
+import com.example.avaliacaomobile.R;
+
 /**
  * View customizada que mostra o consumo diário de água como um anel de progresso.
  * Tudo é desenhado manualmente no Canvas (onDraw).
