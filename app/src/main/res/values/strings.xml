@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">WaterApp</string>
+
+    <!-- WaterProgressView (textos desenhados no Canvas) -->
+    <string name="water_title">Consumo diário de água</string>
+    <string name="water_exceeded_short">Meta ultrapassada!</string>
+    <!-- Modo percentual. O %% é um "%" literal -->
+    <string name="water_percent_format">%1$d%%</string>
+    <!-- Modo absoluto: consumo/meta, ex.: 1800/2000 ml -->
+    <string name="water_absolute_format">%1$d/%2$d ml</string>
+
+    <!-- Tela principal -->
+    <string name="hint_goal">Meta diária (ml)</string>
+    <string name="hint_volume">Volume bebido (ml)</string>
+    <string name="btn_set_goal">Definir meta</string>
+    <string name="btn_register">Registrar</string>
+    <string name="title_today_records">Registros de hoje</string>
+    <!-- Entre aspas para o Android não colapsar os espaços duplos -->
+    <string name="summary_accumulated_goal">"Acumulado: %1$d ml  |  Meta: %2$d ml"</string>
+    <string name="alert_goal_exceeded">Meta ultrapassada em %1$d ml!</string>
+    <!-- %1$s = horário, %2$d = volume do registro, %3$d = acumulado até ali -->
+    <string name="record_item">"%1$s   +%2$d ml   (acumulado: %3$d ml)"</string>
+
+    <!-- Validação das entradas -->
+    <string name="error_empty">Digite um valor em ml.</string>
+    <string name="error_not_positive">O valor deve ser maior que zero.</string>
+    <string name="error_too_large">O valor máximo é %1$d ml.</string>
+    <string name="error_invalid">Valor inválido.</string>
+</resources>

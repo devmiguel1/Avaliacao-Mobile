@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- English translation. Same keys as values/strings.xml -->
+<resources>
+    <string name="app_name">WaterApp</string>
+
+    <!-- WaterProgressView (text drawn on the Canvas) -->
+    <string name="water_title">Daily water intake</string>
+    <string name="water_exceeded_short">Goal exceeded!</string>
+    <!-- Percentage mode. %% is a literal "%" -->
+    <string name="water_percent_format">%1$d%%</string>
+    <!-- Absolute mode: consumed/goal, e.g. 1800/2000 ml -->
+    <string name="water_absolute_format">%1$d/%2$d ml</string>
+
+    <!-- Main screen -->
+    <string name="hint_goal">Daily goal (ml)</string>
+    <string name="hint_volume">Amount drunk (ml)</string>
+    <string name="btn_set_goal">Set goal</string>
+    <string name="btn_register">Log</string>
+    <string name="title_today_records">Records for today</string>
+    <!-- Quoted so Android does not collapse the double spaces -->
+    <string name="summary_accumulated_goal">"Total: %1$d ml  |  Goal: %2$d ml"</string>
+    <string name="alert_goal_exceeded">Goal exceeded by %1$d ml!</string>
+    <!-- %1$s = time, %2$d = record volume, %3$d = running total up to that record -->
+    <string name="record_item">"%1$s   +%2$d ml   (total: %3$d ml)"</string>
+
+    <!-- Input validation -->
+    <string name="error_empty">Enter an amount in ml.</string>
+    <string name="error_not_positive">The value must be greater than zero.</string>
+    <string name="error_too_large">The maximum value is %1$d ml.</string>
+    <string name="error_invalid">Invalid value.</string>
+</resources>
