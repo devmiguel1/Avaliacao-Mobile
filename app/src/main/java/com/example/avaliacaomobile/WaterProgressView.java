@@ -26,6 +26,10 @@ public class WaterProgressView extends View {
     private boolean showAbsolute = false; // false = "75%", true = "1800/2000 ml"
     private ValueAnimator animator;
 
+    // Textos fixos vindos de strings.xml (internacionalização), lidos uma única vez
+    private final String titleText;
+    private final String alertText;
+
     // Criados uma única vez (nunca dentro do onDraw)
     private final Paint trackPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint progressPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -40,6 +44,9 @@ public class WaterProgressView extends View {
 
     public WaterProgressView(Context context, AttributeSet attrs) {
         super(context, attrs);
+
+        titleText = context.getString(R.string.water_title);
+        alertText = context.getString(R.string.water_exceeded_short);
 
         // Lê os atributos declarados em attrs.xml
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.WaterProgressView);
@@ -133,7 +140,7 @@ public class WaterProgressView extends View {
 
         titlePaint.setColor(textColor);
         titlePaint.setTextSize(size * 0.075f);
-        canvas.drawText("Consumo diário de água", cx, offY + size * 0.09f, titlePaint);
+        canvas.drawText(titleText, cx, offY + size * 0.09f, titlePaint);
 
         canvas.drawCircle(cx, cy, radius, trackPaint);
 
@@ -143,11 +150,13 @@ public class WaterProgressView extends View {
             canvas.drawArc(arcRect, -90, sweep, false, progressPaint);
         }
 
+        // Texto com números: usa string com formato (%1$d, %2$d), preenchida a cada desenho
         String text;
         if (showAbsolute) {
-            text = Math.round(shownPercent * maxValue / 100f) + "/" + maxValue + " ml";
+            text = getContext().getString(R.string.water_absolute_format,
+                    Math.round(shownPercent * maxValue / 100f), maxValue);
         } else {
-            text = Math.round(shownPercent) + "%";
+            text = getContext().getString(R.string.water_percent_format, Math.round(shownPercent));
         }
         textPaint.setColor(exceeded ? ALERT_COLOR : textColor);
         textPaint.setTextSize(size * (showAbsolute ? 0.11f : 0.16f));
@@ -163,7 +172,7 @@ public class WaterProgressView extends View {
         // Aviso dentro do componente quando a meta é ultrapassada
         if (exceeded) {
             alertPaint.setTextSize(size * 0.045f);
-            canvas.drawText("Meta ultrapassada!", cx, cy + size * 0.17f, alertPaint);
+            canvas.drawText(alertText, cx, cy + size * 0.17f, alertPaint);
         }
     }
 }

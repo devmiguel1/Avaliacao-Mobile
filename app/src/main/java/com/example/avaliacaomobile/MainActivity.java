@@ -81,22 +81,22 @@ public class MainActivity extends AppCompatActivity {
     private int readValue(EditText et, int max) {
         String s = et.getText().toString().trim();
         if (s.isEmpty()) {
-            toast("Digite um valor em ml.");
+            toast(getString(R.string.error_empty));
             return -1;
         }
         try {
             int v = Integer.parseInt(s);
             if (v <= 0) {
-                toast("O valor deve ser maior que zero.");
+                toast(getString(R.string.error_not_positive));
                 return -1;
             }
             if (v > max) {
-                toast("O valor máximo é " + max + " ml.");
+                toast(getString(R.string.error_too_large, max));
                 return -1;
             }
             return v;
         } catch (NumberFormatException e) {
-            toast("Valor inválido.");
+            toast(getString(R.string.error_invalid));
             return -1;
         }
     }
@@ -115,10 +115,10 @@ public class MainActivity extends AppCompatActivity {
 
         // O alerta é calculado com os valores salvos, não com um efeito visual temporário
         boolean exceeded = acc > goal;
-        tvAccumulated.setText("Acumulado: " + acc + " ml  |  Meta: " + goal + " ml");
+        tvAccumulated.setText(getString(R.string.summary_accumulated_goal, acc, goal));
         tvAccumulated.setTextColor(exceeded ? RED : BLACK);
         if (exceeded) {
-            tvAlert.setText("⚠ Meta ultrapassada em " + (acc - goal) + " ml!");
+            tvAlert.setText(getString(R.string.alert_goal_exceeded, acc - goal));
             tvAlert.setVisibility(View.VISIBLE);
         } else {
             tvAlert.setVisibility(View.GONE);
@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
         int running = 0;
         for (WaterStorage.Record r : storage.getRecords()) {
             running += r.ml;
-            items.add(fmt.format(new Date(r.time)) + "   +" + r.ml + " ml   (acumulado: " + running + " ml)");
+            items.add(getString(R.string.record_item, fmt.format(new Date(r.time)), r.ml, running));
         }
         Collections.reverse(items);
         adapter.notifyDataSetChanged();
